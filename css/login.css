@@ -1,0 +1,12 @@
+.login-wrapper {
+    background: url('../images/img1.jpg') center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#loading-icon {
+    display: none;
+    font-size: 14px
+}

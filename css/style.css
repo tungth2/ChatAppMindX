@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.input {
+    padding: 10px;
+    border: 1px solid;
+    border-color: #dbdbdb;
+    border-radius: 5px;
+}
+body {
+    font-family:"Open Sans" sans-serif;
+    color: #333;
+}
+.error {
+    text-align: left;
+    color: red;
+    margin-top: 5px;
+}
