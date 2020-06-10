@@ -66,6 +66,7 @@ view.setMessageError = (elementId, message) => {
 }
 
 view.addMessage = (message) => {
+    console.log('sua')
     const messageWrapper = document.createElement('div')
     messageWrapper.classList.add('message-container')
     const className = (message.user === model.currentUser.displayName) ? 'your' : 'their'
