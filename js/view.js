@@ -55,7 +55,7 @@ view.setActiveScreen = (screenName) => {
                     user: "ChatBot"
                 }
                 view.addMessage(chatBotMessage)
-                message: sendMessageForm.message.value = ''
+                sendMessageForm.message.value = ''
             })
             break
     }
@@ -66,7 +66,6 @@ view.setMessageError = (elementId, message) => {
 }
 
 view.addMessage = (message) => {
-    console.log('sua')
     const messageWrapper = document.createElement('div')
     messageWrapper.classList.add('message-container')
     const className = (message.user === model.currentUser.displayName) ? 'your' : 'their'
@@ -76,5 +75,10 @@ view.addMessage = (message) => {
             <span class="message-content">${message.message}</span>
         </div>
     `
+    console.log(message)
+    if (message.message === "") {
+
+    } else {
     document.getElementsByClassName('conversation-detail')[0].appendChild(messageWrapper)
+    }
 }
