@@ -1,5 +1,5 @@
 window.onload = () => {
-    //view.setActiveScreen('registerScreen')
+    view.setActiveScreen('registerScreen')
     var firebaseConfig = {
         apiKey: "AIzaSyCs1MGhMFEWTj-XuHyDuzNXmQSTCNoGHq0",
         authDomain: "chatapp-af7f6.firebaseapp.com",
@@ -13,16 +13,23 @@ window.onload = () => {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     //firebase.analytics();
-    firebase.auth().onAuthStateChanged (user => {
+    firebase.auth().onAuthStateChanged(user => {
         if (user) {
             model.currentUser = {
                 displayName: user.displayName,
                 uid: user.uid,
                 email: user.email
             }
-            view.setActiveScreen('chatScreen')
+            if (firebase.auth().currentUser.emailVerified) {
+                view.setActiveScreen('chatScreen')
+            }
         } else {
             view.setActiveScreen('loginScreen')
         }
     })
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
