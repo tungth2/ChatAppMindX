@@ -59,8 +59,8 @@ components.loginScreen = `
                     <div class="submit-wrapper">
                         <div>Don't have an account? <a id = "redirect-register">Register</div>
                         <button type = "submit">
-                        <span id = "login-text">Login</span>
-                        <i id = "loading-icon" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                            <span id = "login-text">Login</span>
+                            <i id = "loading-icon" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                         
                         </button>
                     </div>

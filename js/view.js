@@ -41,22 +41,32 @@ view.setActiveScreen = (screenName) => {
             break
         case 'chatScreen':
             document.getElementById('app').innerHTML = components.chatScreen
+
             const sendMessageForm = document.getElementById("chat-form")
             sendMessageForm.addEventListener('submit', (e) => {
                 e.preventDefault()
                 const message = {
-                    message: sendMessageForm.message.value,
-                    user: model.currentUser.displayName
+                    createdAt: new Date(),
+                    messages:firebase.firestore.FieldValue.arrayUnion( {
+                        owner: model.currentUser.email,
+                        content: sendMessageForm.message.value,
+                        createdAt: new Date()
+                    })
                 }
-                view.addMessage(message)
-                
-                const chatBotMessage = {
-                    message: sendMessageForm.message.value,
-                    user: "ChatBot"
-                }
-                view.addMessage(chatBotMessage)
-                sendMessageForm.message.value = ''
+                model.updateConversation(message)
+                model.loadConversation().then(res => {
+                    view.setCurrentConversation()
+                })
+                // view.addMessage(message)
+                // const chatBotMessage = {
+                //     message: sendMessageForm.message.value,
+                //     user: "ChatBot"
+                // }
+                // view.addMessage(chatBotMessage)
+                // sendMessageForm.message.value = ''
             })
+
+
             break
     }
 }
@@ -68,17 +78,22 @@ view.setMessageError = (elementId, message) => {
 view.addMessage = (message) => {
     const messageWrapper = document.createElement('div')
     messageWrapper.classList.add('message-container')
-    const className = (message.user === model.currentUser.displayName) ? 'your' : 'their'
+    const className = (message.owner === model.currentUser.email) ? 'your' : 'their'
     messageWrapper.innerHTML = `
         <div class="message ${className}">
-            <span class="sender">${message.user}</span>
-            <span class="message-content">${message.message}</span>
+            <span class="sender">${model.currentUser.displayName}</span>
+            <span class="message-content">${message.content}</span>
         </div>
     `
     console.log(message)
     if (message.message === "") {
 
     } else {
-    document.getElementsByClassName('conversation-detail')[0].appendChild(messageWrapper)
+        document.getElementsByClassName('conversation-detail')[0].appendChild(messageWrapper)
     }
+}
+
+view.setCurrentConversation = () => {
+        view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1 ])
+
 }
