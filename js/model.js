@@ -52,7 +52,6 @@ model.loadConversation = () => {
     const promise = new Promise ((resolve, reject) => {
         const collectionName = 'conversations'
         firebase.firestore().collection(collectionName).where('users', 'array-contains', model.currentUser.email).get().then(res => {
-            console.log(getDataFromDocs(res.docs))
             model.conversations = getDataFromDocs(res.docs)
             if (model.conversations.length > 0) {
                 model.currentConversation = model.conversations[0]

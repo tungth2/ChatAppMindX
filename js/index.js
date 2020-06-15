@@ -15,6 +15,7 @@ window.onload = () => {
     //firebase.analytics();
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
+            console.log(user)
             model.currentUser = {
                 displayName: user.displayName,
                 uid: user.uid,

@@ -46,8 +46,7 @@ view.setActiveScreen = (screenName) => {
             sendMessageForm.addEventListener('submit', (e) => {
                 e.preventDefault()
                 const message = {
-                    createdAt: new Date(),
-                    messages:firebase.firestore.FieldValue.arrayUnion( {
+                    messages:firebase.firestore.FieldValue.arrayUnion({
                         owner: model.currentUser.email,
                         content: sendMessageForm.message.value,
                         createdAt: new Date()
@@ -63,7 +62,7 @@ view.setActiveScreen = (screenName) => {
                 //     user: "ChatBot"
                 // }
                 // view.addMessage(chatBotMessage)
-                // sendMessageForm.message.value = ''
+                sendMessageForm.message.value = ''
             })
 
 
@@ -86,7 +85,7 @@ view.addMessage = (message) => {
         </div>
     `
     console.log(message)
-    if (message.message === "") {
+    if (message.content === "") {
 
     } else {
         document.getElementsByClassName('conversation-detail')[0].appendChild(messageWrapper)
@@ -94,6 +93,6 @@ view.addMessage = (message) => {
 }
 
 view.setCurrentConversation = () => {
-        view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1 ])
+        view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1])
 
 }
