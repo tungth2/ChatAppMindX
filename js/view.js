@@ -41,21 +41,23 @@ view.setActiveScreen = (screenName) => {
             break
         case 'chatScreen':
             document.getElementById('app').innerHTML = components.chatScreen
-
+            model.loadConversation().then(res => {
+                view.setCurrentConversation()
+            })
+            model.setUpListenConversations()
             const sendMessageForm = document.getElementById("chat-form")
             sendMessageForm.addEventListener('submit', (e) => {
                 e.preventDefault()
                 const message = {
-                    messages:firebase.firestore.FieldValue.arrayUnion({
-                        owner: model.currentUser.email,
-                        content: sendMessageForm.message.value,
-                        createdAt: new Date()
-                    })
+                    owner: model.currentUser.email,
+                    content: sendMessageForm.message.value,
+                    createdAt: new Date().toISOString()
                 }
-                model.updateConversation(message)
-                model.loadConversation().then(res => {
-                    view.setCurrentConversation()
-                })
+                if (message.content !== "") {
+                    model.addMessage(message)
+                }
+                
+
                 // view.addMessage(message)
                 // const chatBotMessage = {
                 //     message: sendMessageForm.message.value,
@@ -80,7 +82,7 @@ view.addMessage = (message) => {
     const className = (message.owner === model.currentUser.email) ? 'your' : 'their'
     messageWrapper.innerHTML = `
         <div class="message ${className}">
-            <span class="sender">${model.currentUser.displayName}</span>
+            <span class="sender">${message.owner}</span>
             <span class="message-content">${message.content}</span>
         </div>
     `
@@ -93,6 +95,6 @@ view.addMessage = (message) => {
 }
 
 view.setCurrentConversation = () => {
-        view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1])
-
+    for (message of model.currentConversation.messages)
+        view.addMessage(message)
 }
