@@ -70,20 +70,51 @@ components.loginScreen = `
 `
 
 components.chatScreen = `
-<div class="chat-container">
-<div class="header">MindXChat</div>
-<div class="main">
-    <div class="conversation-name">MindXChat</div>
-    <div class="conversation-detail">
-    </div>
-    <form id="chat-form">
-
-        <div class="input-chat-wrapper">
-            <input type="text" name="message" placeholder="Type a message...">
-            <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-        </div>
-
-    </form>
+<div class="header">MindXChat
+    <button class='log-out' type='click'><i class="fa fa-sign-out" aria-hidden="true"></i></div>
 </div>
+        <div class="chat-container">
+            <div class='aside-left'>
+                <div class="list-conversation">
+                    
+                </div>
+                <form id="create-conversation">
+                    <div class="input-wrapper">
+                        <input class="input" name="title" type="text" placeholder="Conversation Name">
+                        <div class='error' id='conversation-name-error'></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <input class="input" name="email" type="text" placeholder="User's email">
+                        <div class='error' id='conversation-email-error'></div>
+                    </div>
+                    <button class="btn" type="submit">Create</button>
+                </form>
+            </div>
+            
+            <div class="main">
+                <div class="conversation-name"></div>
+                <div class="conversation-detail">
+                </div>
+                <form id="chat-form">
+                    <div class="input-chat-wrapper">
+                        <input type="text" name="message" placeholder="Type a message...">
+                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="aside-right">
+                <div class="list-users">
+ 
+                </div>
+                <form id="add-user">
+                    <div class="input-wrapper">
+                        <input class="input" type="text" name="email" placeholder="Email">
+                        <div class="error" id="user-error-email"></div>
+                        <button class="btn" type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+
+
 </div>
 `

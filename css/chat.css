@@ -1,20 +1,24 @@
 .chat-container {
-    height: 100vh;
+    height: calc(100vh - 64px);
+    display: flex;
 }
 
-.chat-container .header {
+.header {
     height: 64px;
     background-color: #4482FF;
     text-align: center;
     line-height: 64px;
     color: white;
     font-size: 24px;
+    position: relative;
 }
 
 .chat-container .main {
-   height: calc(100% - 64px);
+   height: 100%;
    display: flex;
    flex-direction: column;
+   flex-grow: 1;
+   width: 65%;
 }
 .chat-container .main .conversation-detail {
     flex-grow: 1;
@@ -76,3 +80,89 @@
 .chat-container .main .message-container .message.their .message-content {
     background-color: #f1f0f0;
 }
+
+
+.chat-container .aside-left {
+    border-right: 1px solid #dbdbdb;
+    width: 20%;
+}
+
+.chat-container .aside-right {
+    padding-left: 10px;
+    border-left: 1px solid #dbdbdb;
+    width: 15%;
+}
+.chat-container .list-conversation .conversation {
+    padding-left: 10px;
+    cursor: pointer;
+    position: relative;
+
+}
+.chat-container .list-conversation .conversation.current {
+    background-color: rgb(187, 187, 187);
+}
+
+.chat-container .aside-left #create-conversation {
+    padding: 10px;
+}
+
+.chat-container #add-user .btn {
+    margin-top: 20px;
+}
+
+.chat-container #add-user.list-users {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.chat-container #add-user {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.conversation-new-message {
+    width: 10px;
+    height: 10px;
+    background: #4482ff;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    display: none;
+}
+
+.header button {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background-color: #4482ff ;
+    border: 1px solid #4482ff;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-container .list-conversation {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+    .chat-container .aside-right {
+        display: none;
+    }
+    .chat-container .aside-left .list-conversation .conversation-user {
+        display: none;
+    }
+    .chat-container .aside-left .list-conversation .conversation {
+        border: 1px solid #dbdbdb;
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 55px;
+        font-size: 24px;
+        padding-left: 0px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+ }

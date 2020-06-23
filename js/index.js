@@ -28,6 +28,8 @@ window.onload = () => {
             view.setActiveScreen('loginScreen')
         }
     })
+    //firebase.auth().signOut()
+    
 }
 
 let templateFunction = () => {

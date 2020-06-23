@@ -55,3 +55,24 @@ controller.login = (loginForm) => {
         })
     }
 }
+
+controller.addUser = (user) => {
+    if (!user || user =="") {
+        view.setMessageError('user-error-email', 'Please input email')
+    } else {
+        view.setMessageError('user-error-email', '')
+    }
+}
+
+controller.addConversation = (conversation) =>{
+    if (!conversation.title || conversation.title === '') {
+        view.setMessageError('conversation-name-error', 'Please input conversation name')
+    }else {
+        view.setMessageError('conversation-name-error', '')
+    }
+    if (!conversation.users[0] || conversation.users[0] === '') {
+        view.setMessageError('conversation-email-error', 'Please input an email')
+    } else {
+        view.setMessageError('conversation-email-error', '')
+    }
+}

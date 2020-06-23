@@ -18,3 +18,15 @@ body {
     color: red;
     margin-top: 5px;
 }
+
+.btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 8px 22px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: none;
+    cursor: pointer;
+}
